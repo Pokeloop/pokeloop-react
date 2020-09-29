@@ -4,6 +4,7 @@ import color from '@/styles/color.ts'
 
 import Logo from '@/components/atoms/Logo.tsx'
 import UserDropDown from '@/components/molecules/UserDropDown.tsx'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const _TheHeader = styled.div`
     position: relative;
@@ -17,10 +18,12 @@ const _TheHeader = styled.div`
 `
 
 const TheHeader = () => {
+  const { loginWithRedirect, logout } = useAuth0();
+
   return (
     <_TheHeader>
       <Logo />
-      <UserDropDown />
+      <UserDropDown login={loginWithRedirect} logout={logout} />
     </_TheHeader>
   )
 }

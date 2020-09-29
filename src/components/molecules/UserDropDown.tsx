@@ -22,15 +22,16 @@ const _UserAction = styled.div`
     cursor: pointer;
     user-select: none;
 `
-export default function UserDropDown(props: any) {
-
+export default function UserDropDown(props: { login: any, logout: any }) {
+  const { login, logout } = props
   return (
     <_UserDropDown>
       <_UserInfo>
         ハヤシさん
       </_UserInfo>
       <_UserAction>
-        ログイン
+        <div onClick={login}>ログイン</div>
+        <div onClick={logout}>ログアウト</div>
       </_UserAction>
     </_UserDropDown>
   )
