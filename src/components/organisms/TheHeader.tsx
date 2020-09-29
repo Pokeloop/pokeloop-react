@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 import color from '@/styles/color.ts'
 
-import Logo from '@/components/atoms/Logo'
-import UserDropDown from '@/components/molecules/UserDropDown'
+import Logo from '@/components/atoms/Logo.tsx'
+import UserDropDown from '@/components/molecules/UserDropDown.tsx'
 
 const _TheHeader = styled.div`
     position: relative;
