@@ -1,12 +1,14 @@
 
 import * as React from 'react';
-import CommonButton from '@/components/Atoms/Button/CommonButton'
-import Logo from '@/components/Atoms/Logo'
+import CommonButton from '@/components/atoms/Button/CommonButton'
+import Logo from '@/components/atoms/Logo'
+import TheHeader from '@/components/organisms/TheHeader'
+
 const ComponentList = () => {
   return (
     <div className="component-list">
-      <CommonButton text="ボタン" />
-      <Logo />
+      <CommonButton text="ボタン" size="medium" />
+      <TheHeader />
     </div>
   )
 }

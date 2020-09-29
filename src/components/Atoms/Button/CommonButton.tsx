@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import fontsize from '@/styles/font-size.ts'
 import color from '@/styles/color.ts'
 
-export default function CommonButton(props: { size?: string, text: string}) {
-  const { size = 'medium', text } = props
-
-  const _CommonButton = styled.button`
+const _CommonButton = styled.button<{ size: string }>`
     border: 1px solid ${color.black};
     width: 100%;
     color: black;
@@ -19,8 +16,8 @@ export default function CommonButton(props: { size?: string, text: string}) {
     word-break: keep-all;
     cursor: pointer;
     outline: none;
-    font-size: ${ () => fontsize[size] };
-    height: ${() => size === 'medium' ? '40px' : '28'};
+    font-size: ${(props) => fontsize[props.size]};
+    height: ${(props) => props.size === 'medium' ? '40px' : '28px'};
     &:hover {
       background-color: ${color.blue};
       border: 1px solid transparent;
@@ -31,8 +28,15 @@ export default function CommonButton(props: { size?: string, text: string}) {
     }
   `
 
+_CommonButton.defaultProps = {
+  size: 'medium'
+}
+
+export default function CommonButton(props: { size?: string, text: string}) {
+  const { size = 'medium', text } = props
+
   return (
-    <_CommonButton>
+    <_CommonButton size={size}>
       { text }
     </_CommonButton>
   )
