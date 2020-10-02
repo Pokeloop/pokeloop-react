@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import color from '@/styles/color.ts'
 
 import Logo from '@/components/atoms/Logo.tsx'
 import UserDropDown from '@/components/molecules/UserDropDown.tsx'
 import { useAuth0 } from "@auth0/auth0-react";
+import { UserStoreContext } from '@/store/user.tsx';
 
 const _TheHeader = styled.div`
     position: relative;
@@ -18,12 +19,17 @@ const _TheHeader = styled.div`
 `
 
 const TheHeader = () => {
-  const { loginWithRedirect, logout } = useAuth0();
-
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { state, dispatch } = useContext(UserStoreContext);
   return (
     <_TheHeader>
       <Logo />
-      <UserDropDown login={loginWithRedirect} logout={logout} />
+      <UserDropDown
+        login={() => dispatch({ type: 'LOGIN', loginWithRedirect })}
+        isLoggedIn={state.isLoggedIn}
+        user={state.user}
+        logout={() => dispatch({ type: 'LOGOUT', logout })}
+      />
     </_TheHeader>
   )
 }

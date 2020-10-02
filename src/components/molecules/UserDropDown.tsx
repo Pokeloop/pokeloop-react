@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import color from '@/styles/color.ts'
 
@@ -22,16 +22,25 @@ const _UserAction = styled.div`
     cursor: pointer;
     user-select: none;
 `
-export default function UserDropDown(props: { login: any, logout: any }) {
-  const { login, logout } = props
+export default function UserDropDown(props: { login: any, logout: any, isLoggedIn: boolean, user: any}) {
+  const { logout, login, isLoggedIn, user } = props
+  let button;
+  let username;
+  if (isLoggedIn) {
+    button = <div onClick={logout}>ログアウト</div>
+    username = <div>{user.name}</div>
+  } else {
+    button = <div onClick={login}>ログイン</div>
+    username = <div></div>
+  }
+
   return (
     <_UserDropDown>
       <_UserInfo>
-        ハヤシさん
+        {username}
       </_UserInfo>
       <_UserAction>
-        <div onClick={login}>ログイン</div>
-        <div onClick={logout}>ログアウト</div>
+        {button}
       </_UserAction>
     </_UserDropDown>
   )
